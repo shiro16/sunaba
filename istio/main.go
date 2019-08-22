@@ -7,7 +7,7 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	resp, err := http.Get("http://localhost:3001")
+	resp, err := http.Get("http://istio-example-app-sub-svc:9081")
 
 	if err != nil {
 		fmt.Println(err)
@@ -27,5 +27,5 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", handler)
-	http.ListenAndServe(":3000", nil)
+	http.ListenAndServe(":9080", nil)
 }

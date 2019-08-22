@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-example-app-main-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: istio-example-app-main
+  template:
+    metadata:
+      labels:
+        app: istio-example-app-main
+    spec:
+      containers:
+      - name: istio-example-app-main
+        image: shiro16/istio-examples-main:0.0.4
+        ports:
+        - containerPort: 9080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-example-app-sub-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: istio-example-app-sub
+  template:
+    metadata:
+      labels:
+        app: istio-example-app-sub
+    spec:
+      containers:
+      - name: istio-example-app-sub
+        image: shiro16/istio-examples-sub:0.0.3
+        ports:
+        - containerPort: 9081

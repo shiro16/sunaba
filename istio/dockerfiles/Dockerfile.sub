@@ -1,0 +1,10 @@
+# Stage 1
+FROM golang:1.11-alpine3.8 as builder
+COPY ./sub.go ./
+RUN go build -o /app ./sub.go
+
+# Stage 2
+FROM alpine:latest
+EXPOSE 3000
+COPY --from=builder /app .
+ENTRYPOINT ["./app"]
