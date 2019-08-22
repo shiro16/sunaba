@@ -9,17 +9,20 @@ import (
 func handler(w http.ResponseWriter, r *http.Request) {
 	resp, err := http.Get("http://istio-example-app-sub-svc:9081")
 
+	if resp.StatusCode != http.StatusOK {
+		http.Error(w, err.Error(), resp.StatusCode)
+    }
+
 	if err != nil {
 		fmt.Println(err)
-		return
+		http.Error(w, err.Error(), resp.StatusCode)
 	}
 
 	defer resp.Body.Close()
 
 	bodyBytes, err := ioutil.ReadAll(resp.Body)
     if err != nil {
-		fmt.Println(err)
-		return
+		http.Error(w, err.Error(), resp.StatusCode)
     }
 
 	fmt.Fprintf(w, "sub application response: "+string(bodyBytes))

@@ -14,9 +14,11 @@ spec:
     spec:
       containers:
       - name: istio-example-app-main
-        image: shiro16/istio-examples-main:0.0.4
+        image: shiro16/istio-examples-main:0.0.5
         ports:
         - containerPort: 9080
+        args:
+        - ./app
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -37,3 +39,5 @@ spec:
         image: shiro16/istio-examples-sub:0.0.3
         ports:
         - containerPort: 9081
+        args:
+        - ./app

@@ -1,0 +1,31 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: istio-example-app-main-vs
+spec:
+  hosts:
+  - istio-example-app-main-svc
+  http:
+  - route:
+    - destination:
+        host: istio-example-app-main-svc
+    retries:
+      attempts: 5
+      perTryTimeout: 2s
+      retryOn: gateway-error,connect-failure,refused-stream
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: istio-example-app-sub-vs
+spec:
+  hosts:
+  - istio-example-app-sub-svc
+  http:
+  - route:
+    - destination:
+        host: istio-example-app-sub-svc
+    retries:
+      attempts: 10
+      perTryTimeout: 2s
+      retryOn: gateway-error,connect-failure,refused-stream
