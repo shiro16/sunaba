@@ -11,7 +11,7 @@ spec:
         host: istio-example-app-main-svc
     retries:
       attempts: 5
-      perTryTimeout: 1s
+      perTryTimeout: 2.5s
       retryOn: gateway-error,connect-failure,refused-stream
 ---
 apiVersion: networking.istio.io/v1alpha3
