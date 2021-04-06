@@ -7,7 +7,7 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	resp, err := http.Get("http://istio-example-app-sub-svc:9081")
+	resp, err := http.Get("http://istio-example-app-sub-svc:9081/sub")
 
 	if resp.StatusCode != http.StatusOK {
 		http.Error(w, err.Error(), resp.StatusCode)
