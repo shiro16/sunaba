@@ -1,13 +1,14 @@
 package main
 
 import (
-	//"fmt"
+	"fmt"
+	"time"
 	"net/http"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	//fmt.Fprintf(w, "Istio Example sub application")
-	http.Error(w, "err", 503)
+	time.Sleep(time.Second * 2)
+	fmt.Fprintf(w, "Istio Example sub application")
 }
 
 func main() {
