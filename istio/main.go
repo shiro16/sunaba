@@ -7,10 +7,11 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Request Start")
 	resp, err := http.Get("http://istio-example-app-sub-svc:9081/sub")
 
 	if resp.StatusCode != http.StatusOK {
-		http.Error(w, err.Error(), resp.StatusCode)
+		http.Error(w, "bad response", resp.StatusCode)
     }
 
 	if err != nil {
