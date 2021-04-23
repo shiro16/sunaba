@@ -1,0 +1,23 @@
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: istio-example-app-sub-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: istio-example-app-sub
+  template:
+    metadata:
+      labels:
+        app: istio-example-app-sub
+    spec:
+      containers:
+      - name: istio-example-app-sub
+        image: shiro16/istio-examples-sub:0.0.7
+        ports:
+        - containerPort: 9081
+        args:
+        - ./app
